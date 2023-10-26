@@ -1,4 +1,4 @@
-// JavaScript code for rotating most viewed items
+// JavaScript code for rotating most viewed tems section
 const containers = document.querySelectorAll('.art-piece');
 const images = Array.from(containers).map(container => container.querySelector('img'));
 

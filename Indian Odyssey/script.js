@@ -25,6 +25,37 @@ lightboxCloseButton.addEventListener('click', () => {
   lightbox.style.display = 'none';
 });
 
+// JavaScript code for the interactive map
+
+
+// Create a fallback image for any errors in loading images
+function addFallbackImage(imageElement, fallbackImage) {
+  imageElement.src = fallbackImage;
+  imageElement.onerror = () => {
+    imageElement.src = 'fallback-image.jpg';
+  };
+}
+
+// Add fallback images for featured artworks, hidden gem, and most viewed
+const featuredImages = featuredArtworks.map((artPiece) => artPiece.querySelector('img'));
+const hiddenGemImage = document.querySelector('.gem-piece img');
+const mostViewedImage = document.querySelector('.viewed-piece img');
+
+featuredImages.forEach((image) => addFallbackImage(image, 'fallback-image.jpg'));
+addFallbackImage(hiddenGemImage, 'fallback-image.jpg');
+addFallbackImage(mostViewedImage, 'fallback-image.jpg');
+
+// JavaScript code for the star rating system
+const starInputs = document.querySelectorAll('input[name="rating"]');
+starInputs.forEach((starInput) => {
+  starInput.addEventListener('change', () => {
+    // Handle rating selection and submission here.
+     });
+});
+
+// JavaScript code for interactive content sections
+// Implement logic to scroll to the desired content section when a link is clicked.
+
 // JavaScript code for user comments and ratings
 const commentForm = document.getElementById('comment-form');
 const userComments = document.querySelector('.user-comments');
@@ -53,22 +84,3 @@ commentForm.addEventListener('submit', (e) => {
   }
 });
 
-// JavaScript code for the interactive map
-
-
-// Create a fallback image for any errors in loading images
-function addFallbackImage(imageElement, fallbackImage) {
-  imageElement.src = fallbackImage;
-  imageElement.onerror = () => {
-    imageElement.src = 'fallback-image.jpg';
-  };
-}
-
-// Add fallback images for featured artworks, hidden gem, and most viewed
-const featuredImages = featuredArtworks.map((artPiece) => artPiece.querySelector('img'));
-const hiddenGemImage = document.querySelector('.gem-piece img');
-const mostViewedImage = document.querySelector('.viewed-piece img');
-
-featuredImages.forEach((image) => addFallbackImage(image, 'fallback-image.jpg'));
-addFallbackImage(hiddenGemImage, 'fallback-image.jpg');
-addFallbackImage(mostViewedImage, 'fallback-image.jpg');

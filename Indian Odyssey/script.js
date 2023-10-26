@@ -1,22 +1,15 @@
-// JavaScript code for rotating most viewed tems section
 const containers = document.querySelectorAll('.art-piece');
 const images = Array.from(containers).map(container => container.querySelector('img'));
 
 let currentImage = 0;
 
 setInterval(() => {
-  currentImage++;
-
-  if (currentImage >= images.length) {
-    currentImage = 0;
-  }
-
+  currentImage = (currentImage + 1) % images.length;
   containers.forEach(container => {
     const imageElement = container.querySelector('img');
     imageElement.src = images[currentImage].src;
     imageElement.onerror = () => {
-      // Set a fallback image if the original image fails to load
-      imageElement.src = 'fallback-image.jpg'; 
+      imageElement.src = 'fallback-image.jpg';
     };
 
     container.style.backgroundImage = `url(${images[currentImage].src})`;
@@ -30,10 +23,9 @@ for (const container of containers) {
 
   container.addEventListener('mouseout', () => {
     container.style.backgroundColor = '';
-  }
+  });
 }
 
-// JavaScript code for rotating hidden gems
 const hiddenGems = [
   {
     image: 'https://i.pinimg.com/originals/61/c2/16/61c216f8c7bcb4db017e519da837a4b1.jpg',
@@ -58,16 +50,13 @@ function rotateHiddenGems() {
   gemTitle.textContent = hiddenGems[gemIndex].title;
   gemIndex = (gemIndex + 1) % hiddenGems.length;
   gemPiece.onerror = () => {
-    // Set a fallback image if the original image fails to load
-    gemPiece.src = 'fallback-image.jpg'; 
+    gemPiece.src = 'fallback-image.jpg';
   };
 }
 
-// Calling the function to start rotating hidden gems
 rotateHiddenGems();
 setInterval(rotateHiddenGems, 86400000);
 
-// JavaScript code for tracking most viewed items
 const viewedPieces = document.querySelectorAll('.viewed-piece');
 let mostViewed = null;
 
@@ -79,4 +68,20 @@ viewedPieces.forEach((piece, index) => {
     piece.classList.add('most-viewed');
     mostViewed = piece;
   });
-}
+});
+
+// Create a carousel that automatically rotates through the featured artworks
+const featuredArtworks = document.querySelectorAll('.featured .art-piece');
+let currentArtwork = 0;
+
+setInterval(() => {
+  featuredArtworks[currentArtwork].classList.remove('active');
+  currentArtwork = (currentArtwork + 1) % featuredArtworks.length;
+  featuredArtworks[currentArtwork].classList.add('active');
+}, 3000);
+
+// Create a lightbox that pops up when a user clicks on an artwork
+const lightbox = document.querySelector('.lightbox');
+const lightboxImage = lightbox.querySelector('img');
+const lightboxCloseButton = lightbox.querySelector('.close-button');
+

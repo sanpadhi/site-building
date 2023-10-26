@@ -1,76 +1,4 @@
-const containers = document.querySelectorAll('.art-piece');
-const images = Array.from(containers).map(container => container.querySelector('img'));
-
-let currentImage = 0;
-
-setInterval(() => {
-  currentImage = (currentImage + 1) % images.length;
-  containers.forEach(container => {
-    const imageElement = container.querySelector('img');
-    imageElement.src = images[currentImage].src;
-    imageElement.onerror = () => {
-      imageElement.src = 'fallback-image.jpg';
-    };
-
-    container.style.backgroundImage = `url(${images[currentImage].src})`;
-  });
-}, 3000);
-
-for (const container of containers) {
-  container.addEventListener('mouseover', () => {
-    container.style.backgroundColor = '#eee';
-  });
-
-  container.addEventListener('mouseout', () => {
-    container.style.backgroundColor = '';
-  });
-}
-
-const hiddenGems = [
-  {
-    image: 'https://i.pinimg.com/originals/61/c2/16/61c216f8c7bcb4db017e519da837a4b1.jpg',
-    title: 'Toda Huts, Ooty, Tamil Nadu',
-  },
-  {
-    image: 'https://i.pinimg.com/originals/44/17/18/441718a941ca028821a3fd577f208fb3.jpg',
-    title: 'Maluti Temples, Jharkhand',
-  },
-  {
-    image: 'https://fountainink.in/files/photostory/015760449702.jpg',
-    title: 'Shekhawati, Rajasthan',
-  },
-];
-
-let gemIndex = 0;
-const gemPiece = document.querySelector('.gem-piece img');
-const gemTitle = document.querySelector('.gem-piece h3');
-
-function rotateHiddenGems() {
-  gemPiece.src = hiddenGems[gemIndex].image;
-  gemTitle.textContent = hiddenGems[gemIndex].title;
-  gemIndex = (gemIndex + 1) % hiddenGems.length;
-  gemPiece.onerror = () => {
-    gemPiece.src = 'fallback-image.jpg';
-  };
-}
-
-rotateHiddenGems();
-setInterval(rotateHiddenGems, 86400000);
-
-const viewedPieces = document.querySelectorAll('.viewed-piece');
-let mostViewed = null;
-
-viewedPieces.forEach((piece, index) => {
-  piece.addEventListener('click', () => {
-    if (mostViewed) {
-      mostViewed.classList.remove('most-viewed');
-    }
-    piece.classList.add('most-viewed');
-    mostViewed = piece;
-  });
-});
-
-// Create a carousel that automatically rotates through the featured artworks
+// JavaScript code for rotating featured artworks
 const featuredArtworks = document.querySelectorAll('.featured .art-piece');
 let currentArtwork = 0;
 
@@ -80,8 +8,67 @@ setInterval(() => {
   featuredArtworks[currentArtwork].classList.add('active');
 }, 3000);
 
-// Create a lightbox that pops up when a user clicks on an artwork
+// JavaScript code for the lightbox
 const lightbox = document.querySelector('.lightbox');
 const lightboxImage = lightbox.querySelector('img');
 const lightboxCloseButton = lightbox.querySelector('.close-button');
+const artPieces = document.querySelectorAll('.art-piece');
 
+artPieces.forEach((artPiece, index) => {
+  artPiece.addEventListener('click', () => {
+    lightboxImage.src = artPiece.querySelector('img').src;
+    lightbox.style.display = 'block';
+  });
+});
+
+lightboxCloseButton.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+// JavaScript code for user comments and ratings
+const commentForm = document.getElementById('comment-form');
+const userComments = document.querySelector('.user-comments');
+
+commentForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const comment = commentForm.querySelector('textarea').value;
+  const userName = commentForm.querySelector('input').value;
+
+  if (comment.trim() !== '' && userName.trim() !== '') {
+    const commentDiv = document.createElement('div');
+    commentDiv.classList.add('user-comment');
+    commentDiv.innerHTML = `
+      <h4>${userName}</h4>
+      <p>${comment}</p>
+      <div class="rating">
+        <!-- Add your rating stars or input elements here -->
+      </div>
+    `;
+
+    userComments.appendChild(commentDiv);
+
+    // Clear the form
+    commentForm.querySelector('textarea').value = '';
+    commentForm.querySelector('input').value = '';
+  }
+});
+
+// JavaScript code for the interactive map
+
+
+// Create a fallback image for any errors in loading images
+function addFallbackImage(imageElement, fallbackImage) {
+  imageElement.src = fallbackImage;
+  imageElement.onerror = () => {
+    imageElement.src = 'fallback-image.jpg';
+  };
+}
+
+// Add fallback images for featured artworks, hidden gem, and most viewed
+const featuredImages = featuredArtworks.map((artPiece) => artPiece.querySelector('img'));
+const hiddenGemImage = document.querySelector('.gem-piece img');
+const mostViewedImage = document.querySelector('.viewed-piece img');
+
+featuredImages.forEach((image) => addFallbackImage(image, 'fallback-image.jpg'));
+addFallbackImage(hiddenGemImage, 'fallback-image.jpg');
+addFallbackImage(mostViewedImage, 'fallback-image.jpg');

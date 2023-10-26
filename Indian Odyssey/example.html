@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A website dedicated to showcasing and promoting the rich cultural heritage and traditions of India">
-    <meta name="keywords" content="Indian, tradition, heritage, culture, travel, folkore, India">
-    <meta name="author" content="Lotus Legacy">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A website dedicated to showcasing and promoting the rich cultural heritage and traditions of India">
+  <meta name="keywords" content="Indian, tradition, heritage, culture, travel, folklore, India">
+  <meta name="author" content="Lotus Legacy">
   <title>Indian Odyssey</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
@@ -18,23 +18,23 @@
       <button type="submit"><i class="fas fa-search"></i></button>
     </form>
   </header>
-      <section id="explore">
-      <h2>Explore</h2>
-      <nav>
-        <ul>
-          <li><a href="#">Artworks</a></li>
-          <li><a href="#">Music</a></li>
-          <li><a href="#">History</a></li>
-          <li><a href="#">Literature</a></li>
-          <li><a href="#">Food</a></li>
-        </ul>
-      </nav>
-    </section>
-    <main class="container">
+  <section id="explore">
+    <h2>Explore</h2>
+    <nav>
+      <ul>
+        <li><a href="#">Artworks</a></li>
+        <li><a href="#">Music</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Literature</a></li>
+        <li><a href="#">Food</a></li>
+      </ul>
+    </nav>
+  </section>
+  <main class="container">
     <section id="featured">
       <h2>Featured</h2>
-      <main class="container">
-        <div class="art-piece">
+      <div class="featured-carousel">
+        <div class="art-piece active">
           <img src="https://lp-cms-production.imgix.net/news/2019/06/taj-mahal.jpg?auto=format&fit=crop&q=40&sharp=10&vib=20&ixlib=react-8.6.4" alt="Taj Mahal">
           <h3>Taj Mahal</h3>
         </div>
@@ -46,7 +46,8 @@
           <img src="https://indiachalk.com/wp-content/uploads/2022/05/Gulmarg-For-an-Adventurous-Trip-11-1200x628.jpg" alt="Manjusha Painting">
           <h3>Manjusha Painting</h3>
         </div>
-     </section>
+      </div>
+    </section>
     <section id="hidden-gem">
       <h2>Hidden Gem of the Day</h2>
       <div class="gem-piece">
@@ -61,7 +62,21 @@
         <h3>Most Viewed Title</h3>
       </div>
     </section>
-
+    <section id="comments">
+      <h2>User Comments</h2>
+      <form id="comment-form">
+        <textarea placeholder="Leave your comment here"></textarea>
+        <input type="text" placeholder="Your name">
+        <button type="submit">Submit</button>
+      </form>
+      <div class="user-comments">
+        <!-- Display user comments and ratings here -->
+      </div>
+    </section>
+    <section id="map">
+      <h2>Interactive Map</h2>
+      <!-- Add your interactive map content here -->
+    </section>
     <div class="social-sharing">
       <h3>Share this article</h3>
       <ul>
